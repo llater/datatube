@@ -1,0 +1,50 @@
+syntax = "proto3";
+package signals;
+
+service BusierThanChannelsService {
+  rpc BusierThanChannels(BusierThanChannelsRequest) returns
+(BusierThanChannelsResponse);
+}
+
+message BusierThanChannelsRequest {
+  double lowerbound = 1;
+}
+
+message BusierThanChannelsResponse {
+  message Channel {
+    int32 number = 1;
+    double strength = 2;
+  }
+  repeated Channel channels = 1;
+}
+
+service QuieterThanChannelsService {
+  rpc QuieterThanChannels(QuieterThanChannelsRequest) returns
+(QuieterThanChannelsResponse);
+}
+
+message QuieterThanChannelsRequest {
+  double upperbound = 1;
+}
+
+message QuieterThanChannelsResponse {
+  message Channel {
+    int32 number = 1;
+    double strength = 2;
+  }
+  repeated Channel channels = 1;
+}
+
+service ChannelStrengthService {
+  rpc ChannelStrength(ChannelStrengthRequest) returns
+(ChannelStrengthResponse);
+}
+
+message ChannelStrengthRequest {
+  int32 channel = 1;
+}
+
+message ChannelStrengthResponse {
+  double strength = 1;
+  double quality = 2;
+}
